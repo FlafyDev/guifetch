@@ -9,6 +9,7 @@
     in {
       packages = rec {
         guifetch = pkgs.callPackage ./nix/package.nix { };
+        default = guifetch;
       };
       devShell =         pkgs.mkShell {
           buildInputs = with pkgs; [
