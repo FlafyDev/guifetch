@@ -11,26 +11,38 @@ class InfoField {
   InfoField({required this.title, required this.text});
 }
 
+final forcedOSIDProvider = StateProvider<String?>((ref) => null);
 final logoProvider = FutureProvider<ImageProvider?>((ref) {
   final osID = ref.watch(infoOSIDProvider);
-  return osID.whenOrNull<ImageProvider?>(data: (osID) {
-    switch (osID) {
+  final forcedOSID = ref.watch(forcedOSIDProvider);
+  ImageProvider? getImage(String? id) {
+    switch (id) {
       case "nixos":
-        return NetworkImage("https://nixos.org/logo/nixos-logo-only-hires.png");
-      default: 
-        return NetworkImage("https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
+        return const NetworkImage(
+            "https://nixos.org/logo/nixos-logo-only-hires.png");
+      case "windows":
+        return const NetworkImage(
+            "https://gamepedia.cursecdn.com/gamia_gamepedia_en/1/19/Windows-8-logo-150x150.png?version=5e5c6e34894d5984836420e90842c5e8");
+      case "apple":
+        return const NetworkImage(
+            "https://macpowerstore.com/wp-content/uploads/2021/02/Apple-logo-150x150.png");
+      case "arch":
+        return const NetworkImage(
+            "https://i1.wp.com/passthroughpo.st/wp-content/uploads/2017/12/arch-logo.png?ssl=1");
+      case "gentoo":
+        return const NetworkImage(
+            "https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
+      case "endeavour":
+        return const NetworkImage(
+            "https://i2.wp.com/endeavouros.com/wp-content/uploads/2020/10/endeavour-logo-sans-logotype_plein.png?fit=500%2C500&ssl=1");
+      default:
+        return const NetworkImage(
+            "https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
     }
-  });
-  // return NetworkImage(
-  //   [
-  //     "https://gamepedia.cursecdn.com/gamia_gamepedia_en/1/19/Windows-8-logo-150x150.png?version=5e5c6e34894d5984836420e90842c5e8",
-  //     "https://macpowerstore.com/wp-content/uploads/2021/02/Apple-logo-150x150.png",
-  //     "https://i1.wp.com/passthroughpo.st/wp-content/uploads/2017/12/arch-logo.png?ssl=1"
-  //         "https://www.gentoo.org/assets/img/logo/gentoo-g.png",
-  //     "https://webstockreview.net/images/fedora-clipart-vector-19.png",
-  //     "https://i2.wp.com/endeavouros.com/wp-content/uploads/2020/10/endeavour-logo-sans-logotype_plein.png?fit=500%2C500&ssl=1",
-  //   ][5],
-  // );
+  }
+
+  if (forcedOSID != null) return getImage(forcedOSID);
+  return osID.whenOrNull<ImageProvider?>(data: (osID) => getImage(osID));
 });
 
 final logoColorsProvider = FutureProvider<PaletteGenerator>(
