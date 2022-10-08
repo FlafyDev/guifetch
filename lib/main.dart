@@ -7,7 +7,7 @@ import 'package:flutter_improved_scrolling/flutter_improved_scrolling.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'info_fields.dart';
+import 'info.dart';
 
 void main() {
   runApp(
@@ -225,80 +225,11 @@ class MyHomePage extends HookConsumerWidget {
                             color: containerColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: infoFields.when(
-                            data: (infoFields) => Column(
-                              children: infoFields.map((info) => Field(info: info, titleColor: titleColor)).toList(),
-                            ),
-                            error: (err, trace) => Text(err.toString()),
-                            loading: () => const Center(child: CircularProgressIndicator()),
-
-                            // children: [
-                            //   Entry(
-                            //     title: "OS",
-                            //     text: "NixOS",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Host",
-                            //     text: "LENOVO Provence-5R1",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Kernel",
-                            //     text: "5.9.11",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Uptime",
-                            //     text: "9 mins",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Packages",
-                            //     text: "816 (nix-system) 1069 (nix-user)",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Shell",
-                            //     text: "zsh 5.9",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Resolution",
-                            //     text: "1920x1080, 1920x1080",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Wayland Compositor",
-                            //     text: "Hyprland",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Terminal",
-                            //     text: "Foot",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "CPU",
-                            //     text: "Intel i5-7300HQ",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "GPU",
-                            //     text: "Intel HD Graphics 630",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "GPU",
-                            //     text: "NVIDIA GeForce GTX 1050 Mobile",
-                            //     titleColor: titleColor,
-                            //   ),
-                            //   Entry(
-                            //     title: "Memory",
-                            //     text: "3285MiB / 7849MiB",
-                            //     titleColor: titleColor,
-                            //   ),
-                            // ],
+                          child:Column(
+                              children: infoFields
+                                  .map((info) =>
+                                      Field(info: info, titleColor: titleColor))
+                                  .toList(),
                           ),
                         ),
                       ),
@@ -327,6 +258,7 @@ class Field extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(info.title, style: TextStyle(color: titleColor ?? Colors.blue)),
         const Spacer(),
