@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class InfoField {
   final String title;
@@ -7,6 +10,46 @@ class InfoField {
 
   InfoField({required this.title, required this.text});
 }
+
+final logoProvider = FutureProvider<ImageProvider?>((ref) {
+  final osID = ref.watch(infoOSIDProvider);
+  return osID.whenOrNull<ImageProvider?>(data: (osID) {
+    switch (osID) {
+      case "nixos":
+        return NetworkImage("https://nixos.org/logo/nixos-logo-only-hires.png");
+      default: 
+        return NetworkImage("https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
+    }
+  });
+  // return NetworkImage(
+  //   [
+  //     "https://gamepedia.cursecdn.com/gamia_gamepedia_en/1/19/Windows-8-logo-150x150.png?version=5e5c6e34894d5984836420e90842c5e8",
+  //     "https://macpowerstore.com/wp-content/uploads/2021/02/Apple-logo-150x150.png",
+  //     "https://i1.wp.com/passthroughpo.st/wp-content/uploads/2017/12/arch-logo.png?ssl=1"
+  //         "https://www.gentoo.org/assets/img/logo/gentoo-g.png",
+  //     "https://webstockreview.net/images/fedora-clipart-vector-19.png",
+  //     "https://i2.wp.com/endeavouros.com/wp-content/uploads/2020/10/endeavour-logo-sans-logotype_plein.png?fit=500%2C500&ssl=1",
+  //   ][5],
+  // );
+});
+
+final logoColorsProvider = FutureProvider<PaletteGenerator>(
+  (ref) async {
+    final logo = ref.watch(logoProvider);
+    final palette = Completer<PaletteGenerator>();
+
+    logo.whenData((logo) {
+      if (logo == null) {
+        return palette.complete(
+            PaletteGenerator.fromColors([PaletteColor(Colors.blue, 1)]));
+      }
+      palette.complete(
+          PaletteGenerator.fromImageProvider(logo, maximumColorCount: 20));
+    });
+
+    return palette.future;
+  },
+);
 
 final infoFieldsProvider = Provider<List<InfoField>>(
   (ref) {
@@ -206,6 +249,24 @@ final infoOSNameProvider = FutureProvider((ref) async {
   }
 
   String? os = variables["PRETTY_NAME"] ?? variables["NAME"] ?? variables["ID"];
+  if (os == null) return null;
+  if (os.startsWith('"')) os = os.substring(1, os.length - 1);
+  return os;
+});
+
+final infoOSIDProvider = FutureProvider((ref) async {
+  final data = await File("/etc/os-release").readAsString();
+  final lines = data.split("\n");
+  final variables = <String, String>{};
+
+  for (var line in lines) {
+    final split = line.split("=");
+    if (split.length == 2) {
+      variables[split[0]] = split[1];
+    }
+  }
+
+  String? os = variables["ID"];
   if (os == null) return null;
   if (os.startsWith('"')) os = os.substring(1, os.length - 1);
   return os;
