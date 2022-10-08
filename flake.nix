@@ -4,11 +4,13 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, flake-utils, nixpkgs }:
-    flake-utils.lib.eachDefaultSystem (system: {
-      devShell = let
-        pkgs = import nixpkgs { inherit system; }; 
-      in
-        pkgs.mkShell {
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs { inherit system; }; 
+    in {
+      packages = rec {
+        guifetch = pkgs.callPackage ./nix/package.nix { };
+      };
+      devShell =         pkgs.mkShell {
           buildInputs = with pkgs; [
             at-spi2-core.dev
             clang
