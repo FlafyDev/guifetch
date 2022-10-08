@@ -121,8 +121,7 @@ final infoFieldsProvider = Provider<List<InfoField>>(
 
 final infoGPUProvider = FutureProvider((ref) async {
   final data = (await Process.run(
-    "/nix/store/ajnzlwhv5j7crjkrnjkckds2gr7fvrln-pciutils-3.8.0/bin/lspci",
-    // "lspci",
+    "lspci",
     [],
   ))
       .stdout
