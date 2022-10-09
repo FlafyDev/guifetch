@@ -71,7 +71,7 @@ class MyHomePage extends HookConsumerWidget {
         },
         child: colors.when(
           error: (err, trace) => const Text("Error"),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(),
           data: (colors) {
             Color titleColor = (colors.lightVibrantColor ??
                     colors.lightMutedColor ??
@@ -88,7 +88,7 @@ class MyHomePage extends HookConsumerWidget {
 
             return logo.when(
               error: (err, trace) => const Text("Error"),
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(),
               data: (logo) => Container(
                 // decoration: BoxDecoration(
                 //   gradient: LinearGradient(

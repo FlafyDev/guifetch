@@ -18,26 +18,19 @@ final logoProvider = FutureProvider<ImageProvider?>((ref) {
   ImageProvider? getImage(String? id) {
     switch (id) {
       case "nixos":
-        return const NetworkImage(
-            "https://nixos.org/logo/nixos-logo-only-hires.png");
+        return const AssetImage("assets/os_images/nixos.png");
       case "windows":
-        return const NetworkImage(
-            "https://gamepedia.cursecdn.com/gamia_gamepedia_en/1/19/Windows-8-logo-150x150.png?version=5e5c6e34894d5984836420e90842c5e8");
+        return const AssetImage("assets/os_images/windows.png");
       case "apple":
-        return const NetworkImage(
-            "https://macpowerstore.com/wp-content/uploads/2021/02/Apple-logo-150x150.png");
+        return const AssetImage("assets/os_images/apple.png");
       case "arch":
-        return const NetworkImage(
-            "https://i1.wp.com/passthroughpo.st/wp-content/uploads/2017/12/arch-logo.png?ssl=1");
+        return const AssetImage("assets/os_images/arch.png");
       case "gentoo":
-        return const NetworkImage(
-            "https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
+        return const AssetImage("assets/os_images/gentoo.png");
       case "endeavour":
-        return const NetworkImage(
-            "https://i2.wp.com/endeavouros.com/wp-content/uploads/2020/10/endeavour-logo-sans-logotype_plein.png?fit=500%2C500&ssl=1");
+        return const AssetImage("assets/os_images/endeavour.png");
       default:
-        return const NetworkImage(
-            "https://www.logolynx.com/images/logolynx/s_12/127ea6d2d0a5b4d1605c37802b13c82c.png");
+        return const AssetImage("assets/os_images/linux.png");
     }
   }
 
