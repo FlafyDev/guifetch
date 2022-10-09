@@ -40,6 +40,14 @@
           export LD_LIBRARY_PATH=${pkgs.libepoxy}/lib
         '';
       };
-    });
+    }) // {
+      overlays.default = final: prev: let 
+        pkgs = import nixpkgs { 
+          inherit (prev) system;
+        };
+      in {
+        guifetch = pkgs.callPackage ./nix/package.nix { };
+      };
+    };
 }
 
