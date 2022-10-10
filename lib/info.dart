@@ -64,6 +64,14 @@ final logoColorsProvider = FutureProvider<PaletteGenerator>(
   },
 );
 
+final infoTitleProvider = Provider<String>((ref) {
+  final osID = ref.watch(infoOSIDProvider);
+  final user = ref.watch(infoUserProvider);
+
+  
+  return osID.whenOrNull(data: (osID) => "$user@$osID") ?? user ?? "";
+});
+
 final infoFieldsProvider = Provider<List<InfoField>>(
   (ref) {
     final fields = <InfoField>[];
@@ -175,6 +183,10 @@ final infoCPUProvider = FutureProvider((ref) async {
 
 final infoTerminalProvider = Provider((ref) {
   return Platform.environment["TERM"];
+});
+
+final infoUserProvider = Provider((ref) {
+  return Platform.environment["USER"];
 });
 
 final infoWaylandCompositorProvider = Provider((ref) {

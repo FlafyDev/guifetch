@@ -48,6 +48,7 @@ class MyHomePage extends HookConsumerWidget {
     final scrollController = useScrollController();
     final scrollProgress = useValueNotifier<double>(0);
     final infoFields = ref.watch(infoFieldsProvider);
+    final infoTitle = ref.watch(infoTitleProvider);
     final config = ref.watch(configProvider);
 
     void _onScroll() {
@@ -161,7 +162,7 @@ class MyHomePage extends HookConsumerWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text("flafydev@nixos"),
+                                            Text(infoTitle),
                                             if (logo != null)
                                               Opacity(
                                                 opacity: scrollProgress.value,
