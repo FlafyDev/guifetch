@@ -40,6 +40,8 @@ dependencies:
   palette_generator: ^0.3.3+2
   flutter_improved_scrolling: ^0.0.3
   flutter_acrylic: ^1.0.0+2
+  toml: ^0.13.1
+  path: ^1.8.1
 
 dev_dependencies:
   flutter_test:

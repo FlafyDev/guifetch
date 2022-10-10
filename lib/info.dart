@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'config.dart';
 
 class InfoField {
   final String title;
@@ -12,9 +13,15 @@ class InfoField {
 }
 
 final forcedOSIDProvider = StateProvider<String?>((ref) => null);
-final logoProvider = FutureProvider<ImageProvider?>((ref) {
+final logoProvider = FutureProvider<ImageProvider?>((ref) async {
+  final config = ref.watch(configProvider);
   final osID = ref.watch(infoOSIDProvider);
   final forcedOSID = ref.watch(forcedOSIDProvider);
+
+  final configCompleter = Completer<Config>();
+  config.whenData((config) => configCompleter.complete(config));
+  await configCompleter.future;
+
   ImageProvider? getImage(String? id) {
     switch (id) {
       case "nixos":
@@ -35,6 +42,7 @@ final logoProvider = FutureProvider<ImageProvider?>((ref) {
   }
 
   if (forcedOSID != null) return getImage(forcedOSID);
+  if (config.value!.osId != null) return getImage(config.value!.osId); 
   return osID.whenOrNull<ImageProvider?>(data: (osID) => getImage(osID));
 });
 

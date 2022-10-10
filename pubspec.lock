@@ -152,12 +152,19 @@ packages:
     source: hosted
     version: "0.3.3+2"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0"
   riverpod:
     dependency: transitive
     description:
@@ -219,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
+  toml:
+    dependency: "direct main"
+    description:
+      name: toml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.1"
   vector_math:
     dependency: transitive
     description:
