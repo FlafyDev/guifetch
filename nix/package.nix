@@ -11,7 +11,7 @@ flutter.mkFlutterApp {
     );
   };
 
-  # vendorHash = "sha256-r9bf93SY/nMprFqdgY7sKrlCe8LqNrFqGyvXvIxOyuA=";
+  vendorHash = "sha256-aZLnH739uwKuyJGtgarZTSIERrPzgxDS9CondZ3qN0I=";
 
   nativeBuildInputs = [ makeWrapper ];
 
