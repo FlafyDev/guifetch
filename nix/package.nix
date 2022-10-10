@@ -7,8 +7,7 @@ flutter.mkFlutterApp {
   src = lib.cleanSourceWith {
     src = ../.;
     filter = (name: type: 
-      !(type == "directory" && baseNameOf name == "nix")
-    );
+      !(baseNameOf name == "nix" || baseNameOf name == "README.md"));
   };
 
   vendorHash = "sha256-fvJEh6Q+Re5Eq9vjLkW3qpOTtZgtsp9j34TwM4PdAj0=";
