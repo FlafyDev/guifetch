@@ -2,7 +2,7 @@
 
 flutter.mkFlutterApp {
   pname = "guifetch";
-  version = "0.0.2";
+  version = "0.0.3";
 
   src = lib.cleanSourceWith {
     src = ../.;
@@ -11,7 +11,7 @@ flutter.mkFlutterApp {
     );
   };
 
-  vendorHash = "sha256-aZLnH739uwKuyJGtgarZTSIERrPzgxDS9CondZ3qN0I=";
+  vendorHash = "sha256-fvJEh6Q+Re5Eq9vjLkW3qpOTtZgtsp9j34TwM4PdAj0=";
 
   nativeBuildInputs = [ makeWrapper ];
 
