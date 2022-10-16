@@ -51,6 +51,7 @@
       overlays.default = final: prev: let 
         pkgs = import nixpkgs { 
           inherit (prev) system;
+          overlays = [ dart-flutter.overlays.default ];
         };
       in {
         guifetch = pkgs.callPackage ./nix/package.nix { };
