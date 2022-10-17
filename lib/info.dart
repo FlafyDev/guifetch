@@ -14,13 +14,13 @@ class InfoField {
 
 final forcedOSIDProvider = StateProvider<String?>((ref) => null);
 final logoProvider = FutureProvider<ImageProvider?>((ref) async {
-  final config = ref.watch(configProvider);
+  final config = ref.watch(configProvider).value;
   final osID = ref.watch(infoOSIDProvider);
   final forcedOSID = ref.watch(forcedOSIDProvider);
 
-  final configCompleter = Completer<Config>();
-  config.whenData((config) => configCompleter.complete(config));
-  await configCompleter.future;
+  if (config?.osImage != null) {
+    return config!.osImage;
+  }
 
   ImageProvider? getImage(String? id) {
     switch (id) {
@@ -42,7 +42,7 @@ final logoProvider = FutureProvider<ImageProvider?>((ref) async {
   }
 
   if (forcedOSID != null) return getImage(forcedOSID);
-  if (config.value!.osId != null) return getImage(config.value!.osId); 
+  if (config?.osId != null) return getImage(config!.osId); 
   return osID.whenOrNull<ImageProvider?>(data: (osID) => getImage(osID));
 });
 

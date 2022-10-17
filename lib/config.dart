@@ -8,16 +8,19 @@ import 'package:toml/toml.dart';
 class Config {
   final Color backgroundColor;
   final String? osId;
+  final ImageProvider? osImage;
 
   Config({
     required this.backgroundColor,
     required this.osId,
+    required this.osImage,
   });
-  
+
   factory Config.fromJson(Map<String, dynamic> json) {
     return Config(
       backgroundColor: Color(json["background_color"] as int? ?? 0),
       osId: json["os_id"] as String?,
+      osImage: json.containsKey("os_image") ? FileImage(File(json["os_image"] as String)) : null,
     );
   }
 }

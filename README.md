@@ -14,3 +14,4 @@ Works, but you'll probably want to edit the `lib/info.dart` file for information
 Located at `~/.config/guifetch/guifetch.toml`.
 - `background_color` = Background color : `0xAARRGGBB`
 - `os_id` = Which os id's image to display : `string`
+- `os_image` = Override the image with an absolute path to an image file : `string`
