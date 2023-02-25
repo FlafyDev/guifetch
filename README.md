@@ -15,3 +15,9 @@ Located at `~/.config/guifetch/guifetch.toml`.
 - `background_color` = Background color : `0xAARRGGBB`
 - `os_id` = Which os id's image to display : `string`
 - `os_image` = Override the image with an absolute path to an image file : `string`
+
+## Building
+1. Install Flutter
+2. Clone this repository and cd into it
+3. Run `flutter build linux --release`
+4. Launch the executable generated in `./build/linux/x64/release/bundle/guifetch`
