@@ -34,7 +34,7 @@ final logoProvider = FutureProvider<ImageProvider?>((ref) async {
         return const AssetImage("assets/os_images/arch.png");
       case "gentoo":
         return const AssetImage("assets/os_images/gentoo.png");
-      case "endeavour":
+      case "endeavouros":
         return const AssetImage("assets/os_images/endeavour.png");
       default:
         return const AssetImage("assets/os_images/linux.png");
