@@ -13,6 +13,10 @@ flutter.buildFlutterApplication {
 
   pubGetScript = "dart --root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt pub get";
 
+  postFixup = ''
+    wrapProgram $out/bin/guifetch --suffix PATH : ${lib.makeBinPath [ pciutils ]}
+  '';
+
   meta = with lib; {
     description = "A GUI fetch tool written in Flutter.";
     license = licenses.mit;
