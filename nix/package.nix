@@ -1,6 +1,6 @@
-{ lib, buildFlutterApp, makeBinaryWrapper, pciutils }:
+{ lib, flutter, makeBinaryWrapper, pciutils, cacert }:
 
-buildFlutterApp {
+flutter.buildFlutterApplication {
   pname = "guifetch";
   version = "0.0.3";
 
@@ -8,9 +8,10 @@ buildFlutterApp {
 
   nativeBuildInputs = [ makeBinaryWrapper ];
 
-  postFixup = ''
-    wrapProgram $out/bin/guifetch --suffix PATH : ${lib.makeBinPath [ pciutils ]}
-  '';
+  depsListFile = ./deps.json;
+  vendorHash = "sha256-HxlAmAlDHL+Tx7T96RbVSJBNOGetI0l4GmmGFY5W4EE=";
+
+  pubGetScript = "dart --root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt pub get";
 
   meta = with lib; {
     description = "A GUI fetch tool written in Flutter.";

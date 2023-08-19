@@ -1,40 +1,6 @@
 {
   "nodes": {
-    "dart-flutter": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1665944327,
-        "narHash": "sha256-+vQpoCJIGFS/Bl8p9RsrYuw4eHBSr2L/1DTEqAMGu3Q=",
-        "owner": "flafydev",
-        "repo": "dart-flutter-nix",
-        "rev": "2cf56c7a2b7d524ad728d12cc6957ddd96d81352",
-        "type": "github"
-      },
-      "original": {
-        "owner": "flafydev",
-        "repo": "dart-flutter-nix",
-        "type": "github"
-      }
-    },
     "flake-utils": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
       "locked": {
         "lastModified": 1659877975,
         "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
@@ -51,39 +17,24 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1665937116,
-        "narHash": "sha256-yPwP5a0BaF5JuYnwWiIvRR/evfQS9Z8PFYnG7Kei+Ew=",
+        "lastModified": 1692221125,
+        "narHash": "sha256-nKUDlbLL8/WW3Fpx9Y0sY+LliTqU3/GexvHU9BdA8Qk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4511f696fbe447d5c145b52eccf283915ec7c72d",
+        "rev": "214c9de8159b25f3cdc8374a80794d4d5787b4cf",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1665937116,
-        "narHash": "sha256-yPwP5a0BaF5JuYnwWiIvRR/evfQS9Z8PFYnG7Kei+Ew=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4511f696fbe447d5c145b52eccf283915ec7c72d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
-        "dart-flutter": "dart-flutter",
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_2"
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
       }
     }
   },
