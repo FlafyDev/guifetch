@@ -6,6 +6,15 @@ A GUI fetch tool written in Flutter.
 https://user-images.githubusercontent.com/44374434/194888240-ec09ead1-2c5f-4773-90d9-c229e0e48e3e.mp4
 
 
+## Installation
+
+### Arch
+
+Available on the AUR as [guifetch-gui](https://aur.archlinux.org/packages/guifetch-git).
+
+### NixOS
+
+`nix run github:flafydev/guifetch`
 
 ## Development
 Works, but you'll probably want to edit the `lib/info.dart` file for information to be correct like `neofetch`. (If you do so, please PR)
